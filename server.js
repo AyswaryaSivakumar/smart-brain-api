@@ -8,6 +8,7 @@ const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
 const app = express();
+const port = process.env.PORT || 3000;
 //Middleware to convert json string to json object
 app.use(express.json());
 app.use(cors());
@@ -34,4 +35,4 @@ app.get('/profile/:id', (req, res) => profile.getProfile(req, res, db));
 app.put('/image', image.updateEntries(db));
 app.post('/imageurl', (req, res) => image.handleClarifaiApiCall(req, res));
 
-app.listen(3001, () => console.log('app is running on port 3001'));
+app.listen(port, () => console.log(`app is running on port ${port}`));
